@@ -2,7 +2,11 @@ import React from 'react'
 import PageHeader from "../../assets/components/PageHeader";
 
 import './styles.css'
-import Input from "../../assets/components/input";
+import Input from "../../assets/components/Input";
+
+import warningIcon from '../../assets/images/icons/warning.svg'
+import Textarea from "../../assets/components/TextArea/Textarea";
+import Select from "../../assets/components/Select";
 
 function TeacherForm() {
   return (
@@ -19,14 +23,61 @@ function TeacherForm() {
           <Input name="name" label="Nome completo"/>
           <Input name="avatar" label="Avatar"/>
           <Input name="whatsapp" label="Whatsapp"/>
+          <Textarea name="bio" label="biografia"/>
         </fieldset>
 
         <fieldset>
           <legend>Sobre a aula</legend>
 
-          <Input name="subject" label="Matéria"/>
+          <Select
+            name="subject"
+            label="Matéria"
+            options={[
+              {value: 'Artes', label: 'Artes'},
+              {value: 'Biologia', label: 'Biologia'},
+              {value: 'Ciencias', label: 'Ciencias'},
+              {value: 'Educação Física', label: 'Educação Física'},
+              {value: 'Física', label: 'Física'}
+            ]}
+          />
           <Input name="cost" label="Custo da sua hora por aula"/>
         </fieldset>
+
+        <fieldset>
+          <legend>Horários Disponíveis
+            <button type="button">
+              + Novo Horário
+            </button></legend>
+          <div className="schedule-item">
+
+            <Select
+              name="week_day"
+              label="Dia da semana"
+              options={[
+                {value: '0', label: 'Domingo'},
+                {value: '1', label: 'Segunda-feira'},
+                {value: '2', label: 'Terça-feira'},
+                {value: '3', label: 'Quarta-feira'},
+                {value: '4', label: 'Quinta-feira'},
+                {value: '5', label: 'Sexta-feira'},
+                {value: '6', label: 'Sábado'}
+              ]}
+            />
+            <Input name="from" label="Das" type="time"/>
+            <Input name="to" label="Até" type="time"/>
+          </div>
+        </fieldset>
+
+        <footer>
+          <p>
+            <img src={warningIcon} alt="Aviso importante"/>
+            Importante! <br/>
+            Preenchha todos os dados
+          </p>
+          <button type="button">
+            Salvar cadastro
+          </button>
+        </footer>
       </main>
     </div>
   )
